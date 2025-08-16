@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //======================================================================
-    // 2. ЛОГИКА ДЛЯ ОТПРАВКИ ФОРМЫ В TELEGRAM
+    // 2. ЛОГИКА ДЛЯ ОТПРАВКИ ФОРМЫ В TELEGRAM (ВЕРСИЯ ДЛЯ НЕСКОЛЬКИХ ПОЛУЧАТЕЛЕЙ)
     //======================================================================
     function handleTelegramForm() {
         const form = document.getElementById('telegram-form');
@@ -19,42 +19,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formMessage = document.getElementById('form-message');
         const botToken = '7558283184:AAHm6tbplgZNX0MgYi3ZC_aSF-dzc9jJndg';
-        const chatId = '1584547360';
+        
+        // ↓↓↓ ВСТАВЬТЕ СЮДА ID ВСЕХ НУЖНЫХ ЛЮДЕЙ ↓↓↓
+        const chatIds = ['1584547360', '317482035', 'ДРУГОЙ_ID_2']; 
+        // ↑↑↑ ID нужно указывать в кавычках через запятую ↑↑↑
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const name = this.elements.name.value;
             const phone = this.elements.phone.value;
             const text = `🔔 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}`;
+            
             if (formMessage) {
-                 formMessage.textContent = 'Отправка...';
-                 formMessage.style.color = '#333';
+                formMessage.textContent = 'Отправка...';
+                formMessage.style.color = '#333';
             }
-            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: chatId, text: text })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    if(formMessage) {
-                        formMessage.textContent = 'Спасибо! Ваша заявка отправлена.';
-                        formMessage.style.color = 'green';
-                    }
-                    form.reset();
-                } else { throw new Error(data.description); }
-            })
-            .catch(error => {
-                if(formMessage) {
-                    formMessage.textContent = 'Ошибка отправки. Попробуйте позже.';
-                    formMessage.style.color = 'red';
-                }
-                console.error('Ошибка:', error);
-            })
-            .finally(() => {
-                setTimeout(() => { if (formMessage) formMessage.textContent = ''; }, 4000);
+
+            // Создаем массив "обещаний" для отправки всем пользователям
+            const sendPromises = chatIds.map(chatId => {
+                return fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: text })
+                }).then(response => response.json());
             });
+
+            // Promise.all ждет, пока все сообщения будут отправлены
+            Promise.all(sendPromises)
+                .then(results => {
+                    // Проверяем, что хотя бы одна отправка была успешной
+                    if (results.some(res => res.ok)) {
+                        if(formMessage) {
+                            formMessage.textContent = 'Спасибо! Ваша заявка отправлена.';
+                            formMessage.style.color = 'green';
+                        }
+                        form.reset();
+                    } else {
+                        throw new Error('Ни одно сообщение не было отправлено успешно.');
+                    }
+                })
+                .catch(error => {
+                    if(formMessage) {
+                        formMessage.textContent = 'Ошибка отправки. Попробуйте позже.';
+                        formMessage.style.color = 'red';
+                    }
+                    console.error('Ошибка:', error);
+                })
+                .finally(() => {
+                    setTimeout(() => { if (formMessage) formMessage.textContent = ''; }, 4000);
+                });
         });
     }
 
