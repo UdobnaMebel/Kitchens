@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Udobna</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-inner">
+        <div class="container">
+            <a href="index.html" class="back-arrow">←</a>
+            <div class="page-title">КУХНИ</div>
+            <div class="menu-icon-placeholder"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="catalog">
+            <div class="container">
+                <!-- Этот блок будет заполняться автоматически из data.js -->
+                <div id="catalog-grid" class="catalog-grid">
+                    <!-- Загрузка товаров... -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Важно: сначала data.js, потом script.js -->
+    <script src="catalog-index.js"></script> <!-- Сначала указатель -->
+    <script src="script.js"></script>        <!-- Потом основной скрипт -->
+</body>
+</html>

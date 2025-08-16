@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Udobna</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header-inner">
+        <div class="container">
+            <a href="index.html" class="back-arrow">←</a>
+            <div class="page-title">КОНТАКТЫ</div>
+            <div class="menu-icon-placeholder"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-links">
+            <div class="container">
+                <h2>Свяжитесь с нами</h2>
+                <div class="contact-grid">
+                    <a href="tel:+79885155515" class="contact-link-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <strong>Телефон</strong>
+                            <span>+7 (988) 515-55-15</span>
+                        </div>
+                    </a>
+                     <a href="https://wa.me/79885155515" target="_blank" class="contact-link-item">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-text">
+                            <strong>WhatsApp</strong>
+                            <span>Написать в WhatsApp</span>
+                        </div>
+                    </a>
+                     <a href="https://t.me/udobna_bot" target="_blank" class="contact-link-item">
+                        <div class="contact-icon">➤</div>
+                        <div class="contact-text">
+                            <strong>Telegram</strong>
+                            <span>Присоединяйтесь к нам</span>
+                        </div>
+                    </a>
+                     <a href="https://www.youtube.com/@UdobnaMebel" target="_blank" class="contact-link-item">
+                        <div class="contact-icon">▶</div>
+                        <div class="contact-text">
+                            <strong>YouTube</strong>
+                            <span>Смотрите наши видео</span>
+                        </div>
+                    </a>
+                    <a href="https://vk.com/udobna_mebel" target="_blank" class="contact-link-item">
+                        <div class="contact-icon">VK</div>
+                        <div class="contact-text">
+                            <strong>VK</strong>
+                            <span>Следите за новостями</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="feedback-form">
+            <div class="container">
+                 <h2>Обратная связь</h2>
+                 <form id="telegram-form">
+                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Ваш номер телефона" required>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                    <p id="form-message"></p>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+    <script src="catalog-index.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

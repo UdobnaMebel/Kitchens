@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка... - Udobna</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-product">
+
+    <header class="header-inner">
+        <div class="container">
+            <a href="catalog.html" class="back-arrow">←</a>
+            <div id="product-header-title" class="page-title">Загрузка...</div>
+            <div class="menu-icon-placeholder"></div>
+        </div>
+    </header>
+
+    <main id="product-content" style="display: none;">
+        <div class="container">
+            <div class="product-layout">
+                
+                <!-- ИСПРАВЛЕННАЯ СТРУКТУРА КАРУСЕЛИ -->
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-track">
+                            <!-- Слайды будут вставлены сюда с помощью JavaScript -->
+                        </div>
+
+                        <button class="carousel-button carousel-button--left" style="display: none;">
+                            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+                        </button>
+                        <button class="carousel-button carousel-button--right" style="display: none;">
+                            <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg>
+                        </button>
+
+                        <!-- ✔ ИЗМЕНЕНИЕ: Навигационные точки теперь ВНУТРИ карусели для правильного позиционирования -->
+                        <div class="carousel-nav"></div>
+                    </div>
+                </div>
+
+                <div class="product-info-container">
+                    <section class="product-details">
+                        <h2 id="product-name"></h2>
+                        <p id="product-description"></p>
+
+                        <h3>Характеристики</h3>
+                        <div class="specs" id="product-specs"></div>
+
+                        <h3>Цена</h3>
+                        <p id="product-price-info"></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="product-not-found" class="container" style="display: none; text-align: center; padding: 50px 0;">
+        <h2>Товар не найден</h2>
+        <p>К сожалению, мы не смогли найти такую кухню.</p>
+        <a href="catalog.html">Вернуться в каталог</a>
+    </div>
+
+    <div class="sticky-footer">
+        <div class="container">
+            <a href="contacts.html" class="btn btn-dark">Оставить заявку</a>
+        </div>
+    </div>
+    
+    <script src="catalog-index.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
