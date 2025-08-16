@@ -273,12 +273,17 @@ header .container {
     padding: 12px 0;
     border-bottom: 1px solid var(--border-light);
     margin-bottom: 8px; 
+    gap: 15px; /* Добавляем небольшой отступ между элементами */
+    /* ✔ ИЗМЕНЕНИЕ: Улучшаем вертикальное выравнивание */
+    align-items: baseline;
 }
 .spec-item span {
     color: var(--light-text);
 }
 .spec-item strong {
     font-weight: 600;
+    /* ✔ ИЗМЕНЕНИЕ: Выравниваем текст по правому краю */
+    text-align: right;
 }
 
 .sticky-footer {
@@ -296,7 +301,6 @@ header .container {
 /* СТИЛИ ДЛЯ КАРУСЕЛИ */
 /* ================================================================== */
 .carousel-container {
-    /* ✔ ДОБАВЛЕНИЕ: Плавный переход для высоты */
     transition: height 0.3s ease-in-out;
 }
 .carousel {
